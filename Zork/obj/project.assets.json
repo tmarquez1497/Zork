@@ -694,11 +694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Workspace\\Zork\\Zork\\Zork\\Zork.csproj",
+      "projectUniqueName": "D:\\Workspace\\Zork\\Zork\\Zork.csproj",
       "projectName": "Zork",
-      "projectPath": "D:\\Workspace\\Zork\\Zork\\Zork\\Zork.csproj",
+      "projectPath": "D:\\Workspace\\Zork\\Zork\\Zork.csproj",
       "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
-      "outputPath": "D:\\Workspace\\Zork\\Zork\\Zork\\obj\\",
+      "outputPath": "D:\\Workspace\\Zork\\Zork\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
