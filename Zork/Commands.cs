@@ -7,11 +7,11 @@ namespace Zork
     {
         QUIT,
         LOOK,
-        NOTH,
+        NORTH,
         SOUTH,
         EAST,
         WEST,
-        UNKOWN
+        UNKNOWN
     }
 
 }
