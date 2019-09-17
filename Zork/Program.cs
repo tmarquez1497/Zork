@@ -6,6 +6,18 @@ namespace Zork
     {
         static void Main(string[] args)
         {
+
+            string[] rooms = { "Forest", "West of House", "Clearing", "Canyon View" };
+
+            int index = 1;
+
+            while(index < rooms.Length)
+            {
+                Console.WriteLine(rooms);
+            }
+
+            
+
             Console.WriteLine("Welcome to Zork!");
 
             Commands command = Commands.UNKNOWN;
