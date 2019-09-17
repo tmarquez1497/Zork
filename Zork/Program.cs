@@ -9,13 +9,13 @@ namespace Zork
             Console.WriteLine("Welcome to Zork!");
 
             Commands command = Commands.UNKNOWN;
-            while(command != Commands.QUIT)
+            while (command != Commands.QUIT)
             {
                 Console.Write("> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
                 string outputString;
-                switch(command)
+                switch (command)
                 {
                     case Commands.QUIT:
                         outputString = "Thank you for playing!";
@@ -25,7 +25,7 @@ namespace Zork
                         outputString = "This is an open field west of a white house, with a boarded front door.\nA rubber mat saying 'Welcome to Zork!' lies by the door.";
                         break;
 
-
+                    //Fall-Through Cases
                     case Commands.NORTH:
                     case Commands.SOUTH:
                     case Commands.EAST:
@@ -37,8 +37,6 @@ namespace Zork
                         outputString = "Unknown Command";
                         break;
 
-                 
-
 
                 }
 
@@ -48,23 +46,15 @@ namespace Zork
 
 
             }
-
-
-            
-            
-
         }
 
 
-        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
-        
-            
+        private static Commands ToCommand(string commandString)
+        {
+           return Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
+        }
 
-                
-       
         
-           
-
     }
 }
 
