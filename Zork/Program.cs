@@ -7,22 +7,13 @@ namespace Zork
         static void Main(string[] args)
         {
 
-            string[] rooms = { "Forest", "West of House", "Clearing", "Canyon View" };
-
-            int index = 1;
-
-            while(index < rooms.Length)
-            {
-                Console.WriteLine(rooms);
-            }
-
-            
-
             Console.WriteLine("Welcome to Zork!");
+           
 
             Commands command = Commands.UNKNOWN;
             while (command != Commands.QUIT)
             {
+                Console.WriteLine(Rooms[PlayerPosition]);
                 Console.Write("> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
@@ -42,7 +33,15 @@ namespace Zork
                     case Commands.SOUTH:
                     case Commands.EAST:
                     case Commands.WEST:
-                        outputString = $"You moved {command}";
+                        bool moveSuccess = Move(command);
+                        if(moveSuccess)
+                        {
+                            outputString = $"You moved {command}";
+                        }
+                        else
+                        {
+                            outputString = "The way is shut!";
+                        }
                         break;
 
                     default:
@@ -63,11 +62,63 @@ namespace Zork
 
         private static Commands ToCommand(string commandString)
         {
-           return Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
+            return Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
         }
 
-        
-    }
+
+        private static bool Move(Commands command)
+        {
+            bool moveSuccess;
+
+            switch (command)
+            {
+                
+                case Commands.NORTH:
+                case Commands.SOUTH:
+                    moveSuccess = false;
+                    break;
+                    
+                case Commands.EAST:
+                    if(PlayerPosition < Rooms.Length - 1)
+                    {
+                        PlayerPosition++;
+                        moveSuccess = true;
+                    }
+                    else
+                    {
+                        moveSuccess = false;
+                    }
+                    
+                    break;
+                case Commands.WEST:
+                    if(PlayerPosition > 0)
+                    {
+                        PlayerPosition--;
+                        moveSuccess = true;
+                    }
+                    else
+                    {
+                        moveSuccess = false;
+                    }
+                    
+                    
+                    break;
+                
+                default:
+                    throw new ArgumentException();
+            }
+
+
+
+            return moveSuccess;
+        }
+
+        private static readonly string[] Rooms = { "Forest", "West of House", "Behind House", "Clearing", "Canyon View" };
+        private static int PlayerPosition = 1;
+
+
+    } 
+    
 }
 
 
