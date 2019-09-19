@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Zork
 {
@@ -68,6 +69,7 @@ namespace Zork
 
         private static bool Move(Commands command)
         {
+            
             bool moveSuccess;
 
             switch (command)
@@ -77,43 +79,39 @@ namespace Zork
                 case Commands.SOUTH:
                     moveSuccess = false;
                     break;
-                    
-                case Commands.EAST:
-                    if(PlayerPosition < Rooms.Length - 1)
-                    {
-                        PlayerPosition++;
-                        moveSuccess = true;
-                    }
-                    else
-                    {
-                        moveSuccess = false;
-                    }
-                    
-                    break;
-                case Commands.WEST:
-                    if(PlayerPosition > 0)
-                    {
-                        PlayerPosition--;
-                        moveSuccess = true;
-                    }
-                    else
-                    {
-                        moveSuccess = false;
-                    }
-                    
-                    
-                    break;
-                
+
+                case Commands.EAST when PlayerPosition < Rooms.Length - 1:
+                      PlayerPosition++;
+                      moveSuccess = true;
+                      break;
+
+                case Commands.WEST when PlayerPosition > 0:
+                      PlayerPosition--;
+                      moveSuccess = true;
+                      break;
+                   
                 default:
-                    throw new ArgumentException();
-            }
-
-
-
+                    moveSuccess = false;
+                    break;
+            }       
+                         
             return moveSuccess;
         }
 
-        private static readonly string[] Rooms = { "Forest", "West of House", "Behind House", "Clearing", "Canyon View" };
+
+        
+        
+
+       
+
+        private static readonly string[] Rooms = 
+            {
+            "Forest",
+            "West of House",
+            "Behind House", "Clearing",
+            "Canyon View"
+            };
+
         private static int PlayerPosition = 1;
 
 
