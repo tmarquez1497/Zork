@@ -28,12 +28,15 @@ namespace Zork
         //Main Function
         static void Main(string[] args)
         {
-            //string roomsFilename = "Rooms.txt";
-            //InitializeRoomDescription(roomsFilename);
-          const string defaultRoomsFilename = "Rooms.txt";
-
-           string roomsFilename = (args.Length > 0 ? args[(int)CommandLineArguments.RoomsFilename] : defaultRoomsFilename);
-           Console.WriteLine("Welcome to Zork!");
+            const string defaultRoomsFilename = "Rooms.txt";
+            string roomsFilename = (args.Length > 0 ? args[(int)CommandLineArguments.RoomsFilename] : defaultRoomsFilename);
+            
+           
+            InitializeRoomDescription(roomsFilename);
+            
+            
+            
+            Console.WriteLine("Welcome to Zork!");
 
             Room previousRoom = null;
             Commands command = Commands.UNKNOWN;
@@ -142,16 +145,19 @@ namespace Zork
         private enum Fields
         {
             Name = 0,
-            Description
+            Description = 1
         }
 
         private enum CommandLineArguments
         {
-            RoomsFilename = 0
+            RoomsFilename = 0,
+            
         }
 
         private static void InitializeRoomDescription(string roomsFilename)
         {
+            
+
             const string fieldDelimeter = "##";
             const int expectedFieldCount = 2;
 
@@ -166,9 +172,9 @@ namespace Zork
                 RoomMap[Name].Description = Description;
             }
             
-            
+        }    
          
-        }
+       
 
 
         private static readonly Room[,] Rooms =
