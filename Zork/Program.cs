@@ -157,34 +157,25 @@ namespace Zork
 
         private static void InitializeRoomDescription(string roomsFilename)
         {
-            
-
-            const string fieldDelimeter = "##";
-            const int expectedFieldCount = 2;
-
-            var roomQuery = from line in File.ReadAllLines(roomsFilename)
-                            let fields = line.Split(fieldDelimeter)
-                            where fields.Length == expectedFieldCount
-                            select (Name: fields[(int)Fields.Name],
-                                    Description: fields[(int)Fields.Description]);
-
-            foreach(var (Name, Description) in roomQuery)
+            var rooms = JsonConvert.DeserializeObject<Room[]>(File.ReadAllText(roomsFilename));
+            foreach (Room room in rooms)
             {
-                RoomMap[Name].Description = Description;
+                RoomMap[room.Name].Description = room.Description;
             }
             
-        }    
-         
-       
+        }
 
 
-        private static readonly Room[,] Rooms =
-        {
+
+
+        private static Room[,] Rooms;
+       /* {
             {new Room("Rocky Trail"),   new Room("South of House"),     new Room ("Canyon View")    },  
             {new Room("Forest"),        new Room("West of House"),      new Room("Behind House")    },        
             {new Room("Dense Woods"),   new Room("North of House"),     new Room("Clearing")        }       
 
-        };
+          };
+         */
 
         private static (int Row, int Column) Location = (1, 1);
 
