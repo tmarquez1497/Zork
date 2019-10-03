@@ -15,7 +15,9 @@ namespace Zork
         }
 
         public override string ToString() => Name;
-        
+
+        public override int GetHashCode() => Name.GetHashCode();
+
 
 
     }
