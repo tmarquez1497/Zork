@@ -8,14 +8,7 @@ namespace Zork
 {
     class Program
     {
-        static Program()
-        {
-            RoomMap = new Dictionary<string, Room>();
-            foreach (Room room in Rooms)
-            {
-                RoomMap[room.Name] = room;
-            }
-        }
+       
 
         private static Room CurrentRoom
         {
@@ -31,9 +24,9 @@ namespace Zork
         {
             const string defaultRoomsFilename = "Rooms.txt";
             string roomsFilename = (args.Length > 0 ? args[(int)CommandLineArguments.RoomsFilename] : defaultRoomsFilename);
-            
-           
-            InitializeRoomDescription(roomsFilename);
+
+
+            InitializeRooms(roomsFilename);
             
             
             
@@ -141,7 +134,7 @@ namespace Zork
 
         //private static readonly Dictionary<string, Room> RoomMap;
 
-        private static readonly Dictionary<string, Room> RoomMap;
+        
 
         private enum Fields
         {
@@ -155,18 +148,10 @@ namespace Zork
             
         }
 
-        private static void InitializeRoomDescription(string roomsFilename)
+        private static void InitializeRooms(string roomsFilename)
         {
-            var rooms = JsonConvert.DeserializeObject<Room[]>(File.ReadAllText(roomsFilename));
-            foreach (Room room in rooms)
-            {
-                RoomMap[room.Name].Description = room.Description;
-            }
-            
+            Rooms = JsonConvert.DeserializeObject<Room[,]>(File.ReadAllText(roomsFilename));
         }
-
-
-
 
         private static Room[,] Rooms;
        /* {
