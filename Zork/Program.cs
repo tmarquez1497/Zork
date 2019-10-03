@@ -22,7 +22,7 @@ namespace Zork
         //Main Function
         static void Main(string[] args)
         {
-            const string defaultRoomsFilename = "Rooms.json";
+            const string defaultRoomsFilename = "Zork.json";
             string roomsFilename = (args.Length > 0 ? args[(int)CommandLineArguments.RoomsFilename] : defaultRoomsFilename);
 
 
